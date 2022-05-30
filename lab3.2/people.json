@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Anita Liberatore",
+        "job": "Software Developer",
+        "age": "27",
+        "city": "Turin",
+        "nationality": "Italian"
+    },
+    {
+        "name": "Claudia Manca",
+        "job": "Psicology",
+        "age": "30",
+        "city": "Turin",
+        "nationality": "Italian"
+    }
+]
