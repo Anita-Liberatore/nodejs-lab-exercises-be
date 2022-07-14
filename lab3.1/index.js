@@ -10,9 +10,10 @@ app.use((req, res, next) => {
     if (req.method !== 'GET') {
         console.log("Method 405")
         next(createError(405))
+    } else {
+        console.log("Method 404")
+        next(createError(404))
     }
-    console.log("Not Found")
-    next(createError(404))
 })
 
 const PORT = process.env.PORT || 3000;
