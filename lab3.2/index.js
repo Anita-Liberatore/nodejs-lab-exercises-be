@@ -5,6 +5,7 @@ const app = express();
 const data = require('./data')
 
 app.use('/', data)
+app.use('/:id', data)
 
 app.use((req, res, next) => {
     if (req.method !== 'GET') {
