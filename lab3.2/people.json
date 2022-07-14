@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "name": "Anita Liberatore",
         "job": "Software Developer",
         "age": "27",
@@ -7,6 +8,7 @@
         "nationality": "Italian"
     },
     {
+        "id": 2,
         "name": "Claudia Manca",
         "job": "Psicology",
         "age": "30",

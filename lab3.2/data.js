@@ -1,11 +1,17 @@
 const { Router } = require('express') 
 const router = Router() 
 
-const people = require('./people.json')
+var people = require('./people.json')
 
 router.get('/', function (req, res) {
   res.header("Content-Type",'application/json');
-  res.send(JSON.stringify(people));
+  res.send(people);
+})
+
+router.get('/:id', function (req, res) {
+   var id = req.params.id
+   var person = people.find(u => u.id == id); 
+   res.send(person);
 })
 
 module.exports = router
