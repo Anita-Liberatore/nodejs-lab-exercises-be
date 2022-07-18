@@ -1,6 +1,15 @@
 const express = require('express');
 const app = express();
 const model = require('./model');
+const createError = require('http-errors')
+
+app.use((req, res, next) => {
+    if (req.method !== 'GET') {
+        next(createError(405))
+    } else {
+        next()
+    }
+})
 
 app.get('/boat/:id', (req, res) => {
 
@@ -21,11 +30,6 @@ app.get('/boat/:id', (req, res) => {
     })
 });
 
-app.get('/ping', (req, res) => {
-
-    res.send("ping");
-
-});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT} - Lab 5.1 - Implement a RESTful JSON GET`));
