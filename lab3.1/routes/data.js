@@ -5,7 +5,10 @@ const data = randomBytes(10).toString('base64')
 
 
 router.get('/', (req, res) => { 
-    res.send(data) 
+    const result = {
+        "data": data
+    }
+    res.send(result) 
 }) 
 
 module.exports = router
