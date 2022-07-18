@@ -4,7 +4,6 @@ const createError = require('http-errors')
 var people = require('./people.json')
 
 router.get('/', function (req, res) {
-  res.header("Content-Type", 'application/json');
   res.send(people);
 })
 
