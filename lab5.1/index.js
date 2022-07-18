@@ -3,13 +3,6 @@ const app = express();
 const model = require('./model');
 const createError = require('http-errors')
 
-app.use((req, res, next) => {
-    if (req.method !== 'GET') {
-        next(createError(405))
-    } else {
-        next()
-    }
-})
 
 app.get('/boat/:id', (req, res) => {
 
