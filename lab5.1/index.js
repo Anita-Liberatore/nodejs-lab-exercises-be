@@ -1,19 +1,27 @@
 const express = require('express');
 const app = express();
 const model = require('./model');
-const createError = require('http-errors')
+const ApiError = require('./ApiError');
+const apiErrorHandler = require('./api-handler');
 
 
-app.get('/boat/:id', (req, res) => {
+app.use(function (req, res, next) {
+    console.log('Time:', new Date());
+    console.log('Request URL:', req.originalUrl);
+    next();
+  });
+
+app.get('/boat/:id', (req, res, next) => {
 
     model.boat.read(req.params.id, (err, data) => {
 
         if (err) {
 
             if (err.code == 'E_NOT_FOUND') {
-                res.sendStatus(404);
-            } else {
-                res.sendStatus(500);
+                next(ApiError.notFound('not found'));
+                return;
+            }  else {
+                next(ApiError.internal('internal error'));
             }
 
         } else {
@@ -23,6 +31,7 @@ app.get('/boat/:id', (req, res) => {
     })
 });
 
+app.use(apiErrorHandler);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT} - Lab 5.1 - Implement a RESTful JSON GET`));
