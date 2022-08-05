@@ -1,3 +1,5 @@
+var data = require('../data/mockUser.json')
+
 var express = require('express'),
 router = express.Router();
 
@@ -6,8 +8,15 @@ router.get('/', (req, res) => {
 })
 
 
-router.get('/prova', (req, res) => {
-  res.send(({ message: "Ok" }))
-});
+router.get('/user', async (request, response) => {
+  try{
+   response.send(data)
+  } catch(error) {
+    response
+        .status(500)
+        .json({ message: "Error in invocation of API: /users" })
+  }
+
+})
 
 module.exports = router;

@@ -7,8 +7,9 @@ const errorController = require('./routes/error-controller');
 
 
 const myLogger = function (req, res, next) {
-    console.log('LOGGED')
-    next()
+    console.log('Time:', new Date());
+    console.log('Request URL:', req.originalUrl);
+    next();
 }
 
 app.use(myLogger)
