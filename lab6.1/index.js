@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const controller = require('./router');
+const controller = require('./router/router');
 
 
 app.use(function (req, res, next) {

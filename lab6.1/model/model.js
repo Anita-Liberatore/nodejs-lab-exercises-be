@@ -27,10 +27,7 @@
     }
   
     function create (id, data, cb) {
-      if (data.brand === '4d2d') {
-        setImmediate(() => cb(Error('unknown')))
-        return
-      }
+      
       if (db.hasOwnProperty(id)) {
         const err = Error('resource exists')
         err.code = 'E_RESOURCE_EXISTS'
@@ -42,6 +39,7 @@
     }
   
     function read (id, cb) {
+      
       if (!(db.hasOwnProperty(id))) {
         const err = Error('not found')
         err.code = 'E_NOT_FOUND'

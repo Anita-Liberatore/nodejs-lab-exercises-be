@@ -9,7 +9,7 @@ const assert = require('assert').strict
 const { join } = require('path')
 const { writeFile } = require('fs').promises
 
-const DATA_500 = randomBytes(2).toString('hex')
+const DATA_500 = '4d2d'
 
 const timeout = promisify(setTimeout)
 const get = promisify((url, cb) => {
@@ -52,11 +52,12 @@ const body = async (res) => {
 
 
 async function start () {
-  const server = net.createServer().listen()
+  /* const server = net.createServer().listen()
   await once(server, 'listening')
   const { port } = server.address()
   server.close()
-  await once(server, 'close')
+  await once(server, 'close') */
+  const port = 3000;
   await writeFile(join(__dirname, 'model.js'), testingModel())
   const sp = spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['start'], { env: { ...process.env, PORT: port }, stdio: ['ignore', 'ignore', 'inherit'] })
 
