@@ -7,6 +7,14 @@ router.get('/', (req, res) => {
   res.send(({ message: "Ping message" }))
 })
 
+router.get('/user/:id', (req, res) => {
+  const userId = Number(req.params.id);
+
+  const user = data;
+
+  user.filter()
+})
+
 
 router.get('/user', async (request, response) => {
   try{

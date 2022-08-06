@@ -38,10 +38,6 @@
     }
   
     function read (id, cb) {
-      if (id === 'd741') {
-        setImmediate(() => cb(Error('unknown')))
-        return
-      }
       if (!(db.hasOwnProperty(id))) {
         const err = Error('not found')
         err.code = 'E_NOT_FOUND'

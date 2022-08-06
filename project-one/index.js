@@ -3,7 +3,6 @@ const app = express();
 const createError = require('http-errors')
 
 const userController = require('./routes/user-controller');
-const errorController = require('./routes/error-controller');
 
 
 const myLogger = function (req, res, next) {
@@ -26,8 +25,6 @@ app.use((req, res, next) => {
         next()
     }
 }) 
-
-app.use('/', errorController);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT} - Project One`));
