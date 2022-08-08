@@ -8,3 +8,4 @@ following criteria:
 irrelevant
 ● Responds to HTTP POST requests to / with a 405 Method Not Allowed HTTP status
 
+(All tests passed!)
