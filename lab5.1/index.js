@@ -16,7 +16,6 @@ app.get('/boat/:id', (req, res, next) => {
     model.boat.read(req.params.id, (err, data) => {
 
         if (err) {
-
             if (err.code == 'E_NOT_FOUND') {
                 next(ApiError.notFound('not found'));
                 return;
