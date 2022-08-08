@@ -2,21 +2,18 @@ const express = require('express');
 const createError = require('http-errors')
 
 const app = express();
-const data = require('./routes/data')
+const data = require('./routes/router')
 
 app.use('/', data)
 
 app.use((req, res, next) => {
-    if (req.method !== 'GET') {
-        console.log("Method 405")
-        next(createError(405))
-    } else {
-        console.log("Method 404")
-        next(createError(404))
+    if (req.path !== '/') {
+        res.status(404).send('Not found');
     }
+    next();
 })
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT} - DELIVER DATA FROM A LIBRARY API`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT} - Lab 3.1`));
 
 module.exports = app
