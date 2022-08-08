@@ -10,12 +10,14 @@ router.get('/', function (req, res) {
 router.get('/:id', function (req, res, next) {
   var id = req.params.id
   var person = people.find(u => u.id == id);
-  if (person != null) {
-    res.send(person);
-  } else {
-    console.log("id not found")
-    next(createError(404))
+
+  if (!person) {
+    res.status(404).send('Id not found');
+    return;
   }
+
+  return res.send(person)
+
 })
 
 module.exports = router
