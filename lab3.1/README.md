@@ -10,3 +10,4 @@ following criteria:
 from the data.js
 4) Responds with a 404 to GET requests to any other route
 
+(All tests passed!)
