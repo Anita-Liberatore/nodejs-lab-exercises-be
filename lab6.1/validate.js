@@ -9,7 +9,7 @@ const assert = require('assert').strict
 const { join } = require('path')
 const { writeFile } = require('fs').promises
 
-const DATA_500 = '4d2d'
+const ROUTE_500 = randomBytes(2).toString('hex')
 
 const timeout = promisify(setTimeout)
 const get = promisify((url, cb) => {
@@ -179,7 +179,7 @@ async function created (port) {
 async function serverError (port) {
   const url = `http://localhost:${port}/boat`
   const tx = send(url)
-  const payload = {data: {brand: DATA_500, color: 'test'}}
+  const payload = {data: {brand: ROUTE_500, color: 'test'}}
   const res = await tx(payload)
 
   assert.equal(
@@ -297,7 +297,7 @@ function testingModel () {
     }
   
     function create (id, data, cb) {
-      if (data.brand === '${DATA_500}') {
+      if (data.brand === '${ROUTE_500}') {
         setImmediate(() => cb(Error('unknown')))
         return
       }

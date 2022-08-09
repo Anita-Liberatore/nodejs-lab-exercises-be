@@ -17,17 +17,9 @@ app.use('/', controller);
 
 app.use((req, res, next) => {
     if (req.method !== 'GET') {
-        console.log("Method 405")
-        next(createError(405))
-    } else {
-        console.log("Method 404")
-        next(createError(404))
+        res.status(405).send('Method not allowed');
     }
-})
-
-app.use((err, req, res, next) => { 
-    res.status(err.status || 500) 
-    res.send(err.message) 
+    next()
 })
 
 const PORT = process.env.PORT || 3000;
