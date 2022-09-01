@@ -12,9 +12,9 @@ app.get('/boat/:id', function (req, res, next) {
             if (err.code === 'E_NOT_FOUND') {
                 next()
                 return
-            }
+            } 
 
-            next(res.status(500).json({ message: "error" }))
+            next(err)
             return
         }
 
@@ -31,6 +31,7 @@ app.use((req, res) => {
     }
     res.status(404).json({ message: "not found" });
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT} - Lab 5.1 - Implement a RESTful JSON GET`));

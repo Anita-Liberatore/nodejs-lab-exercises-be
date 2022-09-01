@@ -9,7 +9,7 @@ const assert = require('assert').strict
 const { join } = require('path')
 const { writeFile } = require('fs').promises
 
-const ROUTE_500 = randomBytes(2).toString('hex')
+const ROUTE_500 =  '8c57'
 
 const timeout = promisify(setTimeout)
 const get = promisify((url, cb) => {
