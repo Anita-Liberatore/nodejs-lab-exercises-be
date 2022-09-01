@@ -50,11 +50,12 @@ const body = async (res) => {
 }
 
 async function start () {
-  const server = net.createServer().listen()
+ /* const server = net.createServer().listen()
   await once(server, 'listening')
   const { port } = server.address()
   server.close()
-  await once(server, 'close')
+  await once(server, 'close') */
+  const port = 3000
   await writeFile(join(__dirname, 'model.js'), testingModel())
   const sp = spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['start'], { env: { ...process.env, PORT: port }, stdio: ['ignore', 'ignore', 'inherit'] })
   const [ err ] = await Promise.race([once(sp, 'spawn'), once(sp, 'error')])
@@ -66,7 +67,7 @@ async function start () {
     if (err.code === 'ERR_ASSERTION') {
       console.log('⛔️ ' + err.message)
       process.exit(1)
-    }
+    } 
     throw err
   } finally {
     await writeFile(join(__dirname, 'model.js'), model())
