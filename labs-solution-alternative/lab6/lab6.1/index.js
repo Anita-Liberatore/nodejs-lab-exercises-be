@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var model = require('./model')
+app.use(express.json());
 
 app.get('/boat/:id', function (req, res, next) {
 
@@ -17,16 +18,30 @@ app.get('/boat/:id', function (req, res, next) {
             return
         }
 
-        res.send(data);
+        res.json(data);
     })
   });
+
+  app.post('/boat', function (req, res, next) {
+
+    var id = model.boat.uid()
+    model.boat.create(id, req.body.data, (err) => {
+
+        if(err) {
+            next(err)
+            return
+        }
+        res.status(201).json({ id });
+    })
+  }); 
   
+  
+app.use((_, res) => {
+    res.status(404).json({ message: "not found" });
+  });
 
 app.use((req, res) => {
-    if (req.method != 'GET') {
-        return res.status(405).json({ message: "method not allowed" });
-    }
-    res.status(404).json({ message: "not found" });
+    res.status(500).json({ message: "internal error server" });
 });
 
 const PORT = process.env.PORT || 3000;

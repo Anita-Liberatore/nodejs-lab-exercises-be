@@ -78,9 +78,7 @@ async function validate ({ port }, retries = 0) {
   let done = false
   let passed = false
   try {
-    if (retries > 3) {
-      assert.fail(`Unable to connect to server on port: ${port}`)
-    }
+    
     await t(ok(port))
     await t(created(port))
     await t(serverError(port))
