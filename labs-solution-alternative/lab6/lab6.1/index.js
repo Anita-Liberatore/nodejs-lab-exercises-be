@@ -14,7 +14,7 @@ app.get('/boat/:id', function (req, res, next) {
                 return
             }
 
-            next()
+            next(err)
             return
         }
 
