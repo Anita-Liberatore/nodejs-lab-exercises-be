@@ -1,7 +1,7 @@
 {
-  "name": "lab4",
+  "name": "lab6.1",
   "version": "1.0.0",
-  "description": "Lab 4.1 - Render a View",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,10 +9,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.1",
-    "express-hbs": "^2.4.0",
-    "hbs": "^4.2.0"
-  }
+  "license": "ISC"
 }
