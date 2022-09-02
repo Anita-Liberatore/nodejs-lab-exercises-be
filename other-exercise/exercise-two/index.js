@@ -4,10 +4,10 @@ const hbs = require('hbs')
 const app = express()
 
 app.set('views', path.join(__dirname)); // specify the views directory
-app.set('view engine', 'hbs'); // register the template engine
+app.set('view engine', 'hbs'); 
 
 app.get("/me", function(req, res) {
-    res.render('me')
+    res.render('me', {message: "hello world"})
 })
 
 const PORT = process.env.PORT || 3000;
