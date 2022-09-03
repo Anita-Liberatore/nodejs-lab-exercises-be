@@ -14,7 +14,7 @@ app.get("/boat/:id", function(req,res, next) {
                 return
             }
 
-            next() 
+            next(err) 
             return
         }
         res.json(data)
@@ -38,9 +38,7 @@ app.delete("/boat/:id", function(req, res, next) {
     })
 })
 
-app.use((req, res) => {
-    res.status(404).send("not found")
-})
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT} - Lab 6.2 - Implement a RESTful JSON DELETE`));
