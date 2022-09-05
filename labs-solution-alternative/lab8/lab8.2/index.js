@@ -9,16 +9,23 @@ const request = require('request');
   request(newurl).pipe(res);
 }); */
 
-app.get("/", function(req, res) {
+app.get("/", function(req, res, next) {
 
   const url = req.query.url
 
   try {
     request(url).pipe(res);
   } catch(err) {
-    console.log(err)
+    const badRequest = new Error('bad request')
+    badRequest.status=400
+    next(badRequest)
   }
 })
+
+app.use((req,res) => {
+  res.status(404).send({message: "not found"})
+})
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT} - Lab 8.2 - Implement a RESTful JSON POST`));
