@@ -4,8 +4,8 @@ const port = 3000
 const got = require('got')
 
 const {
-    BOAT_SERVICE_PORT = 4000,
-    BRAND_SERVICE_PORT = 5000
+    BOAT_SERVICE_PORT,
+    BRAND_SERVICE_PORT
 } = process.env
 
 const boatSrv = `http://localhost:${BOAT_SERVICE_PORT}`
@@ -16,19 +16,16 @@ app.get('/:id', async (req, res, next) => {
     const id = req.params.id
 
     try {
-        const boat = await got(`${boatSrv}/${id}`, { timeout: 1250 }).json()
-        const brand = await got(`${brandSrv}/${boat?.brand}`, { timeout: 1250 }).json()
+        const boat = await got(`${boatSrv}/${id}`, { timeout: 600 }).json()
+        const brand = await got(`${brandSrv}/${boat.id}`, { timeout: 600 }).json()
+
 
         res.json({
-            id: boat?.id,
-            color: boat?.color,
-            brand: brand?.name,
+            id: boat.id,
+            color: boat.color,
+            brand: brand.name,
         })
     } catch (err) {
-        if (err?.response?.statusCode === 404) {
-            next()
-            return
-        }
 
         if (err?.response?.statusCode === 400) {
             const badRequest = new Error('bad request')

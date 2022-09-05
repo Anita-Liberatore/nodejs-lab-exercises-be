@@ -17,7 +17,7 @@ server.get("/:id", async (req, res, next) => {
       `https://rickandmortyapi.com/api/character/${req.params.id}`
     );
     const characterData = await characterBody.json();
-    console.log(characterData)
+    
     const { body: locationBody } = await request(characterData?.location?.url);
     const locationData = await locationBody.json();
 
