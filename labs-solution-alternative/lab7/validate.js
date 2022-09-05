@@ -184,6 +184,7 @@ async function ok (port) {
   const content = await body(res)
   try {
     const result = JSON.parse(content)
+    console.log(result)
     assert.deepEqual(result, { id: 1, brand: 'Chaparral', color: 'Red' }, `GET ${url} must respond with correct data\n   got -  ${content})`)
     console.log(`☑️  GET ${url} responded with correct data`)
   } catch (err) {

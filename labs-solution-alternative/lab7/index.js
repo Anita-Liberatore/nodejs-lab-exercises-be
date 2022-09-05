@@ -16,14 +16,14 @@ app.get('/:id', async (req, res, next) => {
     const id = req.params.id
 
     try {
-        const boat = await got(`${boatSrv}/${id}`, { timeout: 600 }).json()
-        const brand = await got(`${brandSrv}/${boat.id}`, { timeout: 600 }).json()
+        const boat = await got(`${boatSrv}/${id}`).json()
+        const brand = await got(`${brandSrv}/${boat.brand}`).json()
 
-
-        res.json({
+        return res.status(200).send({
             id: boat.id,
-            color: boat.color,
             brand: brand.name,
+            color: boat.color,
+            
         })
     } catch (err) {
 
@@ -32,6 +32,14 @@ app.get('/:id', async (req, res, next) => {
             badRequest.status = 400
 
             next(badRequest)
+            return
+        }
+
+        if (err?.response?.statusCode === 404) {
+            const notfound = new Error('not found')
+            notfound.status = 404
+
+            next(res.status(404).json({ message: "not found" }))
             return
         }
 
@@ -44,12 +52,8 @@ app.use((_, res) => {
 });
 
 app.use((err, _req, res, _next) => {
-    res.status(err.status ?? 500).json({
-        status: err.status ?? 500,
-        code: err?.code,
-        message: err.message ?? "internal server error",
-    });
-});
+    res.status(err.status ?? 500).json({ message: 'internal server error' })
+})
 
 
 app.listen(process.env?.PORT ?? 3000)
