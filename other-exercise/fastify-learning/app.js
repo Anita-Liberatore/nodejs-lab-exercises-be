@@ -24,11 +24,13 @@ module.exports = async function (fastify, opts) {
   })
 
   fastify.setNotFoundHandler((request, reply) => {
-    if (request.method !== 'GET') {
+
+    if(request.method!='GET') {
       reply.status(405)
-      return 'Method Not Allowed\n'
+      return 'method not allowed\n'
     }
+
     reply.status(404)
-    return 'Not Found\n'
+    return 'not found\n'
   })
 }
