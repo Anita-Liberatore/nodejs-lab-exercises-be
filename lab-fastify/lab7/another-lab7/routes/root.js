@@ -17,8 +17,8 @@ module.exports = async function (fastify, opts) {
 
     try {
 
-      const boat = await got(`http://localhost:${BOAT_SRV_PORT}/${id}`, { timeout: 1250 }).json()
-      const brand = await got(`http://localhost:${BRAND_SRV_PORT}/${boat?.brand}`, { timeout: 1250 }).json()
+      const boat = await got(`http://localhost:${BOAT_SRV_PORT}/${id}`, { timeout: 1250, retry: 0 }).json()
+      const brand = await got(`http://localhost:${BRAND_SRV_PORT}/${boat?.brand}`, { timeout: 1250, retry: 0}).json()
 
       return {
          id: boat?.id,
