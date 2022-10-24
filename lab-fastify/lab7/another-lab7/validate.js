@@ -116,9 +116,7 @@ async function validate ({ port, boatSrv, brandSrv }, retries = 0) {
   let done = false
   let passed = false
   try {
-    if (retries > 3) {
-      assert.fail(`Unable to connect to server on port: ${port}`)
-    }
+    
     await t(ok(port))
     await t(notFound(port, 2)) // boat missing
     await t(notFound(port, 3)) // brand missing

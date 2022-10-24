@@ -3,8 +3,8 @@
 const got = require('got')
 
 const {
-  BOAT_SRV_PORT,
-  BRAND_SRV_PORT
+  BOAT_SRV_PORT = 5000,
+  BRAND_SRV_PORT = 4000
 } = process.env
 
 module.exports = async function (fastify, opts) {
