@@ -9,7 +9,11 @@ module.exports = async function (fastify, opts) {
 
 module.exports = async function (fastify, opts) {
   fastify.get('/', async function (request, reply) {
-    return await data()
+    try {
+      return await data()
+    } catch(err) {
+      reply.send(err)
+    }
   })
 }
 
